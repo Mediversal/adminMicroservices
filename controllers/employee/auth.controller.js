@@ -4,12 +4,12 @@ const userModel = require("../../models/userModel");
 const userRoleModel = require("../../models/userRoleModel");
 const userPermissionModel = require("../../models/userPermissionModel");
 const sendSMS = require("../../utils/sendSMS");
-// const refreshTokenModel = require('../models/refreshTokenModel');
-// const auditLogModel = require("../../models/auditLogModel");
 const { getClientIP, getUserAgent } = require("../../utils/requestUtils");
 const { generateTokens } = require("../../utils/generateTokens");
 const {sendPasswordResetRequestToAdmin} = require("../../utils/sendEmail");
 const db = require("../../config/db");
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Helper function to get user roles and permissions
 const getUserRolesAndPermissions = async (userId) => {
@@ -175,7 +175,6 @@ exports.verifyOTP = async (req, res) => {
     const { roles, permissions } = await getUserRolesAndPermissions(user.id);
 
     // Tokens
-    // const { accessToken, refreshToken } = generateTokens(user);
     const { accessToken, refreshToken } = await generateTokens(user);
 
     // Save refresh token in DB
@@ -216,12 +215,12 @@ exports.requestPasswordReset = async (req, res) => {
   }
   
   try {
-   
+     
     const [rows] = await db.query('SELECT id, name, email, phone FROM users WHERE email = ? OR phone = ? ', [email,phone]);
     if (rows.length === 0) return res.status(404).json({ message: 'User not found' });
     
     // Notify admin (example email)
-    const adminEmail = "no-reply@mediversal.in"
+    const adminEmail = process.env.SMTP_USER 
     await sendPasswordResetRequestToAdmin({ to:adminEmail,email: rows[0].email, userId: rows[0].id, name: rows[0].name, phone:rows[0].phone });
     res.json({ message: 'Password reset request sent to admin' });
   } catch (err) {

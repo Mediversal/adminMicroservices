@@ -50,3 +50,4 @@ dump.rdb
 
 # Docker
 docker-compose.override.yml
+insertAdmin.js

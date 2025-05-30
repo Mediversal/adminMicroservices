@@ -3,7 +3,6 @@ const userModel = require("../../models/userModel");
 const userRoleModel = require("../../models/userRoleModel");
 const userPermissionModel = require("../../models/userPermissionModel");
 const sendSMS = require("../../utils/sendSMS");
-const refreshTokenModel = require("../../models/refreshTokenModel");
 db = require("../../config/db");
 const {sendUpdatedLoginCredentials,sendLoginCredentials} = require("../../utils/sendEmail");
 
@@ -166,9 +165,6 @@ exports.deleteEmployee = async (req, res) => {
 
     // 2. Delete roles associated with the user
     await userRoleModel.deleteRoles(user_id);
-
-    // 3. Delete refresh tokens
-    await refreshTokenModel.deleteTokens(user_id);
 
     // 4. Delete the user
     await userModel.delete(user_id);

@@ -2,8 +2,8 @@ const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
 
 // 🔐 Hardcoded admin credentials
-const email = 'admin@example.com';
-const password = 'YourSecurePassword123';
+const email = 'admin@mediversal.in';
+const password = 'mediversal@123'; // 👉 Your admin password
 
 // 🔧 Hardcoded database configuration
 const dbConfig = {

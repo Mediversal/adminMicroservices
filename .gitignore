@@ -48,6 +48,4 @@ dump.rdb
 *.sock
 *.pid
 
-# Docker
-docker-compose.override.yml
 insertAdmin.js

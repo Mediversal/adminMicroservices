@@ -9,12 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // admin routes
-app.use('/api/admin/auth', require('./routes/admin/auth.routes'));
-app.use('/api/admin/employees', require('./routes/admin/employee.routes'));
+app.use('/admin/auth', require('./routes/admin/auth.routes'));
+app.use('/admin/employees', require('./routes/admin/employee.routes'));
 
 // employees routes
-app.use('/api/employee/auth', require('./routes/employee/auth.routes'));
-app.use('/api/employee/token', require('./routes/employee/token.routes'));
+app.use('/admin/employee/auth', require('./routes/employee/auth.routes'));
+app.use('/admin/employee/token', require('./routes/employee/token.routes'));
 
 // run application on port 
 const PORT = process.env.PORT || 5000;

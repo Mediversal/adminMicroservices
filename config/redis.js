@@ -8,7 +8,7 @@ const redis = createClient({
   socket: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
-    tls: true
+    tls: process.env.REDIS_TLS === 'true' // Set REDIS_TLS=true in env if needed
   },
   database: 0,
 });

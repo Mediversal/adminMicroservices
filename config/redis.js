@@ -5,6 +5,7 @@ const redis = new Redis({
   socket: {
     host: process.env.REDIS_HOST,
     port: parseInt(process.env.REDIS_PORT) || 6379,
+    tls:true
   },
   database: 0,
 });

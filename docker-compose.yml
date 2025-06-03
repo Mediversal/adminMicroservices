@@ -10,22 +10,20 @@ services:
       DB_USER: HIMS
       DB_PASS: PatnaHIMS
       DB_NAME: mediversal_hims
+
       REDIS_HOST: mediversalapp-ymy3x8.serverless.aps1.cache.amazonaws.com
       REDIS_PORT: 6379
+
       JWT_SECRET: e2f3c4d5e6f7a8b9c0d1e2f3c4d5e6f7a8b9c0d1e2f3c4832873hfefh763c3t4c3672376dh336dg6d636
-      REFRESH_TOKEN_SECRET: your_refresh_token_secret
+
       SMTP_HOST: smtp.office365.com
       SMTP_PORT: 587
       SMTP_PASS: BlueSky@2024!Rain
       SMTP_USER: no-reply@mediversal.in
+
       WAY2MINT_BASE_URL: https://apibulksms.way2mint.com/pushsms
       WAY2MINT_USERNAME: mediversal
       WAY2MINT_PASSWORD: ucAX_68_
       WAY2MINT_TEMPLATE_ID: 1707170799838499719
       WAY2MINT_SENDER_ID: MEDVSL
       WAY2MINT_DATA4: 1201159335359924573,1702173216915572636
-
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"

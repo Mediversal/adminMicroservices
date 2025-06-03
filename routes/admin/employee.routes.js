@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const employeeController = require('../../controllers/admin/employee.controller');
 const authController = require('../../controllers/admin/auth.controller');
+
 // Route to handle employee-related operations by admin
 router.post('/', authController.authenticateToken, authController.authorizeAdmin,employeeController.createEmployee);
 router.put('/:user_id',authController.authenticateToken, authController.authorizeAdmin,employeeController.updateEmployee);

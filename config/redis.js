@@ -1,21 +1,17 @@
-const Redis = require('ioredis');
-require('dotenv').config();
- 
-const redis = new Redis({
+import { createClient } from 'redis';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const redis = createClient({
   socket: {
     host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT) || 6379,
-    tls:true
+    port: process.env.REDIS_PORT,
+    tls : true
   },
-  database: 0,
+  database: 0, // Ensure this matches the database you are checking
 });
- 
-redis.on('connect', () => {
-  console.log('✅ Redis Connected Successfully');
-});
- 
-redis.on('error', (err) => {
-  console.error('❌ Redis Connection Error:', err.message);
-});
- 
-module.exports = redis;
+redis.on('connect', () => console.log('Connected to Redis'));
+redis.on('error', (err) => console.error('Redis connection error:', err));
+redis.on('error', (err) => console.log('Redis Client Error', err));
+
+await redis.connect();

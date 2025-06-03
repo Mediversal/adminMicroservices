@@ -25,8 +25,8 @@ exports.loginAdmin = async (req, res) => {
     const token = jwt.generateToken({ id: admin.id, role: 'admin' });
 
     res.json({
-      token,
       message: 'Login successful',
+      token,
       admin: {
         id: admin.id,
         email: admin.email,

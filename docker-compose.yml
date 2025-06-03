@@ -6,7 +6,7 @@ services:
       - "5000:5000"
     environment:
       - PORT:5000
-      - DB_HOST:localhost
+      - DB_HOST:mediversalapp.cr88skaoqifv.ap-south-1.rds.amazonaws.com
       - DB_USER:HIMS
       - DB_PASS:PatnaHIMS
       - DB_NAME:mediversal_hims

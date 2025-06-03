@@ -12,7 +12,6 @@ services:
       - DB_NAME=mediversal_hims
       - REDIS_HOST=mediversalapp.cr88skaoqifv.ap-south-1.rds.amazonaws.com
       - REDIS_PORT=6379
-      - REDIS_PASSWORD=47743
       - JWT_SECRET=e2f3c4d5e6f7a8b9c0d1e2f3c4d5e6f7a8b9c0d1e2f3c4832873hfefh763c3t4c3672376dh336dg6d636
       - REFRESH_TOKEN_SECRET=your_refresh_token_secret
       - SMTP_HOST=smtp.office365.com

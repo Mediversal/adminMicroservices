@@ -118,8 +118,9 @@ exports.loginWithOtp = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Store OTP in Redis (5 min) and reset failed attempts
-    await redis.setex(phoneKey, 300, otp);
+    await redis.set(phoneKey, otp, 'EX', 300); // expire in 5 minutes
+
+
     await redis.del(`otp_fail_${phone}`); // reset failures if any
 
     // send smg to user
@@ -149,6 +150,7 @@ exports.verifyOTP = async (req, res) => {
     }
 
     const storedOtp = await redis.get(phoneKey);
+    console.log("Stored OTP:", storedOtp);
     if (!storedOtp) {
       return res.status(400).json({ error: "OTP expired or invalid" });
     }
@@ -158,12 +160,22 @@ exports.verifyOTP = async (req, res) => {
       const fails = await redis.incr(failKey);
       if (fails === 1) await redis.expire(failKey, 300); // 5 min
 
+      // if (fails >= 3) {
+      //   // await redis.setex(lockKey, 900, "locked"); // 15 min lock
+      //   await redis.set(lockKey, "locked", { EX: 900 }); // ✅ New Redis v4+
+
+      //   return res
+      //     .status(403)
+      //     .json({ error: "Too many failed attempts. Locked for 15 minutes" });
+      // }
+
       if (fails >= 3) {
-        await redis.setex(lockKey, 900, "locked"); // 15 min lock
-        return res
-          .status(403)
-          .json({ error: "Too many failed attempts. Locked for 15 minutes" });
-      }
+  await redis.set(lockKey, "locked", { EX: 900 }); // 15 min lock
+  return res
+    .status(403)
+    .json({ error: "Too many failed attempts. Locked for 15 minutes" });
+}
+
 
       return res.status(400).json({ error: "Invalid OTP" });
     }

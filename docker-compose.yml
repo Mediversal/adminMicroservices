@@ -24,8 +24,6 @@ services:
       - WAY2MINT_TEMPLATE_ID=1707170799838499719
       - WAY2MINT_SENDER_ID=MEDVSL
       - WAY2MINT_DATA4=1201159335359924573,1702173216915572636
-    depends_on:
-      - redis
 
   redis:
     image: redis:7

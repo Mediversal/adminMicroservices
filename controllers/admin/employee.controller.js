@@ -147,7 +147,7 @@ exports.updateEmployee = async (req, res) => {
     return res.status(200).json({ message: "User updated successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({ error: err.message});
   }
 };
 

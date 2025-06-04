@@ -13,8 +13,8 @@ app.use('/admin/auth', require('./routes/admin/auth.routes'));
 app.use('/admin/employees', require('./routes/admin/employee.routes'));
 
 // employees routes
-app.use('/admin/employee/auth', require('./routes/employee/auth.routes'));
-app.use('/admin/employee/token', require('./routes/employee/token.routes'));
+app.use('/admin/employees/auth', require('./routes/employee/auth.routes'));
+app.use('/admin/employees/token', require('./routes/employee/token.routes'));
 
 // run application on port 
 const PORT = process.env.PORT || 5000;

@@ -10,15 +10,15 @@ exports.getEmployeeRoles = async () => {
 exports.assignRoles = async (userId, roleIds = []) => {
   if (!roleIds.length) return;
   const values = roleIds.map(roleId => `(${userId}, ${roleId})`).join(',');
-  await db.execute(`INSERT INTO user_roles (user_id, role_id) VALUES ${values}`);
+  await db.execute(`INSERT INTO employee_roles (employee_id, role_id) VALUES ${values}`);
 };
 
 // userRoleModel.js
 exports.getRolesByUserId = async (userId) => {
   const [rows] = await db.execute(
     `SELECT r.* FROM roles r
-     INNER JOIN user_roles ur ON ur.role_id = r.id
-     WHERE ur.user_id = ?`,
+     INNER JOIN employee_roles er ON er.role_id = r.id
+     WHERE er.employee_id = ?`,
     [userId]
   );
   return rows;
@@ -43,17 +43,17 @@ exports.updateRoles = async (userId, roleIds = []) => {
   }
 
   // Remove existing roles
-  await db.execute('DELETE FROM user_roles WHERE user_id = ?', [userId]);
+  await db.execute('DELETE FROM employee_roles WHERE employee_id = ?', [userId]);
 
   // Assign new roles only if array is not empty
   if (roleIds.length > 0) {
     const values = roleIds.map(roleId => `(${userId}, ${roleId})`).join(',');
-    const sql = `INSERT INTO user_roles (user_id, role_id) VALUES ${values}`;
+    const sql = `INSERT INTO employee_roles (employee_id, role_id) VALUES ${values}`;
     await db.execute(sql);
   }
 };
 
 // Delete roles associated with the user
 exports.deleteRoles = async (userId) => {
-  await db.execute('DELETE FROM user_roles WHERE user_id = ?', [userId]);
+  await db.execute('DELETE FROM employee_roles WHERE employee_id = ?', [userId]);
 };

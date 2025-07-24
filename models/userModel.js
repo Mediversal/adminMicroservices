@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-//find user by email or phone
+//find employees by email or phone
 exports.findByEmailOrPhone = async (email, phone) => {
   const [rows] = await db.execute(
     'SELECT * FROM employees WHERE email = ? OR phone = ? LIMIT 1',
@@ -9,7 +9,7 @@ exports.findByEmailOrPhone = async (email, phone) => {
   return rows[0];
 };
 
-// Create a new user
+// Create a new employees
 exports.create = async ({ name, email, phone, employeeId_no, password_hash }) => {
   const [result] = await db.execute(
     'INSERT INTO employees (name, email, phone, employeeId_no, password_hash) VALUES (?, ?, ?, ?,?)',
@@ -18,13 +18,13 @@ exports.create = async ({ name, email, phone, employeeId_no, password_hash }) =>
   return result.insertId;
 };
 
-// Get all users
+// Get all employees
 exports.getAll = async () => {
   const [rows] = await db.execute('SELECT * FROM employees');
   return rows;
 };
 
-// Get user by ID
+// Get employees by ID
 exports.getById = async (userId) => {
   const [rows] = await db.execute('SELECT * FROM employees WHERE id = ? LIMIT 1', [userId]);
   return rows[0];

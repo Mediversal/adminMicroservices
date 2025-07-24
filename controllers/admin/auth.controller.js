@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('../../utils/jwt'); // Ensure you have a JWT utility for token generation
-const adminModel = require('../../models/adminModel');
+const adminModel = require('../../models/admin');
 
 // admin login
 exports.loginAdmin = async (req, res) => {

@@ -12,7 +12,7 @@ const sendSmsOtp = async (phone, otp) => {
         tmplId: process.env.WAY2MINT_TEMPLATE_ID,
         to: `91${phone}`,
         from: process.env.WAY2MINT_SENDER_ID,
-        text: `Hi your OTP for Mediversal app login is ${otp} and will be valid for the next 30 mins. Z+pO6rVbW42`,
+        text: `Your Mediversal OTP is ${otp}. Access approved-because good health shouldn't wait. Welcome aboard! Message ID: VzSiQcXRmi2`,
         data4: process.env.WAY2MINT_DATA4, // Optional parameter
       },
     });

@@ -21,7 +21,7 @@ exports.createEmployee = async (req, res) => {
       name,
       email,
       phone,
-      employee_id,
+      employeeId_no: employee_id,
       password_hash: hashedPassword,
     });
 

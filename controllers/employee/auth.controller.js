@@ -228,7 +228,7 @@ exports.requestPasswordReset = async (req, res) => {
   
   try {
      
-    const [rows] = await db.query('SELECT id, name, email, phone FROM users WHERE email = ? OR phone = ? ', [email,phone]);
+    const [rows] = await db.query('SELECT id, name, email, phone FROM employees WHERE email = ? OR phone = ? ', [email,phone]);
     if (rows.length === 0) return res.status(404).json({ message: 'User not found' });
     
     // Notify admin (example email)

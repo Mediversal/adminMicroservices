@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const userModel = require("../../models/userModel");
-const userRoleModel = require("../../models/userRoleModel");
-const userPermissionModel = require("../../models/userPermissionModel");
+const userModel = require("../../models/employee");
+const userRoleModel = require("../../models/employee-role");
+const userPermissionModel = require("../../models/employee-permission");
 const sendSMS = require("../../utils/sendSMS");
 db = require("../../config/db");
 const {sendUpdatedLoginCredentials,sendLoginCredentials} = require("../../utils/sendEmail");

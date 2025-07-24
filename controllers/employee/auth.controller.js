@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const redis = require("../../config/redis");
-const userModel = require("../../models/userModel");
-const userRoleModel = require("../../models/userRoleModel");
-const userPermissionModel = require("../../models/userPermissionModel");
+const userModel = require("../../models/employee");
+const userRoleModel = require("../../models/employee-role");
+const userPermissionModel = require("../../models/employee-permission");
 const sendSMS = require("../../utils/sendSMS");
 const { getClientIP, getUserAgent } = require("../../utils/requestUtils");
 const { generateTokens } = require("../../utils/generateTokens");
